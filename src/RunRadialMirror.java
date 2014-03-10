@@ -1,3 +1,4 @@
+import acm.graphics.GOval;
 import acm.program.GraphicsProgram;
 
 import java.awt.*;
@@ -59,7 +60,7 @@ public class RunRadialMirror extends GraphicsProgram {
         }
 
         //the small rectangles in radius 5 //wth happened
-        int rotationAngle = 0;
+        int rotationAngle = 10;
         for(int m = 0; m < 360; m += 30) {
             RotatedRectangle rotatedRectangle = new RotatedRectangle(15, rotationAngle);
             double onThisRadius = radiusArray[4];
@@ -74,17 +75,17 @@ public class RunRadialMirror extends GraphicsProgram {
         for(int m = 0; m < 360; m += 30) {
             CircleOnRadial circleOnRadial = new CircleOnRadial(25);
             double onThisRadius = radiusArray[3];
-            double radians = m*Math.PI/180 -45;
+            double radians = m*Math.PI/180 + 15;
             double xCoord = onThisRadius*Math.cos(radians);
             double yCoord = onThisRadius*Math.sin(radians);
             add(circleOnRadial, (frameSize - xCoord)/2 - 25/2.0, (frameSize - yCoord)/2 - 25/2.0);
         }
         //largest rectangles
-        rotationAngle = 0;
+        rotationAngle = 10;
         for(int m = 0; m < 360; m += 30) {
             RotatedRectangle rotatedRectangle = new RotatedRectangle(20, rotationAngle);
             double onThisRadius = radiusArray[2];
-            double radians = m*Math.PI/180 - 15;
+            double radians = m*Math.PI/180 + 45;
             double xCoord = onThisRadius*Math.cos(radians);
             double yCoord = onThisRadius*Math.sin(radians);
             add(rotatedRectangle, (frameSize - xCoord)/2, (frameSize - yCoord)/2);
@@ -95,22 +96,34 @@ public class RunRadialMirror extends GraphicsProgram {
         for(int m = 0; m < 360; m += 30) {
             CircleOnRadial circleOnRadial = new CircleOnRadial(31);
             double onThisRadius = radiusArray[1];
-            double radians = m*Math.PI/180 + -45;
+            double radians = m*Math.PI/180 + 75;
             double xCoord = onThisRadius*Math.cos(radians);
             double yCoord = onThisRadius*Math.sin(radians);
             add(circleOnRadial, (frameSize - xCoord)/2 - 31/2.0, (frameSize - yCoord)/2 - 31/2.0);
         }
 
-        //rectangles with much longer length
-        rotationAngle = 0;
+        //inner radius of rectangles
+        rotationAngle = 10;
         for(int m = 0; m < 360; m += 30) {
             RotatedRectangle rotatedRectangle = new RotatedRectangle(15, rotationAngle);
             double onThisRadius = radiusArray[0];
-            double radians = m*Math.PI/180 - 11;
+            double radians = m*Math.PI/180 + 105;
             double xCoord = onThisRadius*Math.cos(radians);
             double yCoord = onThisRadius*Math.sin(radians);
             add(rotatedRectangle, (frameSize - xCoord)/2, (frameSize - yCoord)/2);
             rotationAngle -= 30;
+        }
+
+        //add center mirror
+        int m = 0;
+        Color transparentWhite = new Color(255,255,255,200);
+        for (m = 0; m < 360*100; m+= 5) {
+            double mirrorRadius = radiusArray[0] - 15 - 2*m;
+            GOval centerCircle = new GOval(mirrorRadius, mirrorRadius);
+            centerCircle.setFilled(true);
+            centerCircle.setColor(transparentWhite);
+            transparentWhite = new Color(255,255,255, (20+(4*m)/5)%255);
+            add(centerCircle, (frameSize - mirrorRadius)/2 , (frameSize - mirrorRadius)/2);
         }
 
 

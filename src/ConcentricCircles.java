@@ -17,12 +17,12 @@ public class ConcentricCircles extends GCompound {
 
     public ConcentricCircles(double frameSize) {
 
-        radius6 = frameSize*(3.0)/4;
-        radius5 = frameSize*((3.0)/4 - .10);
-        radius4 = frameSize*((3.0)/4 - .15);
-        radius3 = frameSize*((3.0)/4 - .25);
-        radius2 = frameSize*((3.0)/4 - .30);
-        radius1 = frameSize*((3.0)/4 - .35);
+        radius6 = frameSize*.85;
+        radius5 = frameSize*(.85 - .15);
+        radius4 = frameSize*(.85 - .25);
+        radius3 = frameSize*(.85 - .35);
+        radius2 = frameSize*(.85 - .45);
+        radius1 = frameSize*(.85 - .55);
 
         GOval circ6 = new GOval((frameSize - radius6)/2, (frameSize- radius6)/2, radius6, radius6);
         GOval circ5 = new GOval((frameSize - radius5)/2 ,(frameSize - radius5)/2, radius5, radius5);
