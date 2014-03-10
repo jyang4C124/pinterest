@@ -16,15 +16,13 @@ public class ConcentricCircles extends GCompound {
     private double radius1;
 
     public ConcentricCircles(double frameSize) {
-        double x = (frameSize - radius6)/2;
 
-
-        radius6 = frameSize*2.0/3;
-        radius5 = frameSize*(2.0/3 - .05);
-        radius4 = frameSize*(2.0/3 - .10);
-        radius3 = frameSize*(2.0/3 - .15);
-        radius2 = frameSize*(2.0/3 - .20);
-        radius1 = frameSize*(2.0/3 - .25);
+        radius6 = frameSize*(3.0)/4;
+        radius5 = frameSize*((3.0)/4 - .10);
+        radius4 = frameSize*((3.0)/4 - .15);
+        radius3 = frameSize*((3.0)/4 - .25);
+        radius2 = frameSize*((3.0)/4 - .30);
+        radius1 = frameSize*((3.0)/4 - .35);
 
         GOval circ6 = new GOval((frameSize - radius6)/2, (frameSize- radius6)/2, radius6, radius6);
         GOval circ5 = new GOval((frameSize - radius5)/2 ,(frameSize - radius5)/2, radius5, radius5);
@@ -41,7 +39,7 @@ public class ConcentricCircles extends GCompound {
         add(circ1);
     }
 
-    public double[] getRadius(){
+    public double[] getRadiusArray(){
         double[] radii = {radius1, radius2, radius3, radius4, radius5, radius6};
         return radii;
     }
