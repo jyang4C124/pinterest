@@ -46,23 +46,50 @@ public class RunRadialMirror extends GraphicsProgram {
         add(concentricCircles);
         double[] radiusArray = concentricCircles.getRadiusArray();
 
+        //Weird thing I am doing
+        for (int n = 0; n < 100; n +=5) {
+            ConcentricCircles concentricCirclesWeird = new ConcentricCircles(frameSize - 75 + n);
+            add(concentricCirclesWeird);
+        }
+
+
+
+        //Specifying colors for geometric objects
+        Color beige = new Color(250,235,215);
+        Color darkGreen = new Color(0,100,0);
+        Color lighterGreen = new Color(143,188,143);
+        Color darkOliveGreen = new Color(85,107,47);
+
+
         //note there are 12 geometric shapes in each of the large concentric circles so k should be 360/12 = 30.
         //the for loops below generate geometric shapes for each concentric circle
 
         //the smallest circles in radius6 (largest)
+        int i = 0;
+        CircleOnRadial circleOnRadial;
         for(int m = 0; m < 360; m += 30) {
-            CircleOnRadial circleOnRadial = new CircleOnRadial(19); //specifying size and type of geometric object placed on the large concentric circle
+
+            if (i%3 == 0) {
+                circleOnRadial = new CircleOnRadial(19, beige); //specifying size and type of geometric object placed on the large concentric circle
+            } else if (i%3 == 1) {
+                circleOnRadial = new CircleOnRadial(19, lighterGreen); //specifying size and type of geometric object placed on the large concentric circle
+            } else {
+                circleOnRadial = new CircleOnRadial(19, darkGreen); //specifying size and type of geometric object placed on the large concentric circle
+            }
+
+
             double onThisRadius = radiusArray[5]; //radius 6, since index starts at 0
             double radians = m*Math.PI/180 - 45; //minus 45 to shift degrees to left
             double xCoord = onThisRadius*Math.cos(radians); //get x coordinate through polar form r*theta
             double yCoord = onThisRadius*Math.sin(radians); //get y coordinate through polar form r*theta
             add(circleOnRadial, (frameSize - xCoord)/2 - 19/2.0, (frameSize - yCoord)/2 - 19/2.0); //(frameSize - Coord)/2 is used to center the circle. Then subtract the size/2 to center the center of the circle on the frame circle.
+            i+=1;
         }
 
         //the small rectangles in radius 5 //wth happened
         int rotationAngle = 10;
         for(int m = 0; m < 360; m += 30) {
-            RotatedRectangle rotatedRectangle = new RotatedRectangle(15, rotationAngle);
+            RotatedRectangle rotatedRectangle = new RotatedRectangle(15, rotationAngle, darkOliveGreen);
             double onThisRadius = radiusArray[4];
             double radians = m*Math.PI/180 - 15;
             double xCoord = onThisRadius*Math.cos(radians);
@@ -73,17 +100,25 @@ public class RunRadialMirror extends GraphicsProgram {
 
         //medium sized circles on radius4
         for(int m = 0; m < 360; m += 30) {
-            CircleOnRadial circleOnRadial = new CircleOnRadial(25);
+            if (i%3 == 1) {
+                circleOnRadial = new CircleOnRadial(25,beige);
+            } else if (i%3 == 0) {
+                circleOnRadial = new CircleOnRadial(25,lighterGreen);
+            } else {
+                circleOnRadial= new CircleOnRadial(25, darkGreen);
+            }
+
             double onThisRadius = radiusArray[3];
             double radians = m*Math.PI/180 + 15;
             double xCoord = onThisRadius*Math.cos(radians);
             double yCoord = onThisRadius*Math.sin(radians);
             add(circleOnRadial, (frameSize - xCoord)/2 - 25/2.0, (frameSize - yCoord)/2 - 25/2.0);
+            i += 1;
         }
         //largest rectangles
         rotationAngle = 10;
         for(int m = 0; m < 360; m += 30) {
-            RotatedRectangle rotatedRectangle = new RotatedRectangle(20, rotationAngle);
+            RotatedRectangle rotatedRectangle = new RotatedRectangle(20, rotationAngle, darkOliveGreen);
             double onThisRadius = radiusArray[2];
             double radians = m*Math.PI/180 + 45;
             double xCoord = onThisRadius*Math.cos(radians);
@@ -94,18 +129,25 @@ public class RunRadialMirror extends GraphicsProgram {
 
         //largest circles on radius2
         for(int m = 0; m < 360; m += 30) {
-            CircleOnRadial circleOnRadial = new CircleOnRadial(31);
+            if (i%3 == 0) {
+                circleOnRadial = new CircleOnRadial(31,beige);
+            } else if (i%3 == 1) {
+                circleOnRadial= new CircleOnRadial(31, darkGreen);
+            } else {
+                circleOnRadial = new CircleOnRadial(31,lighterGreen);
+            }
             double onThisRadius = radiusArray[1];
             double radians = m*Math.PI/180 + 75;
             double xCoord = onThisRadius*Math.cos(radians);
             double yCoord = onThisRadius*Math.sin(radians);
             add(circleOnRadial, (frameSize - xCoord)/2 - 31/2.0, (frameSize - yCoord)/2 - 31/2.0);
+            i += 1;
         }
 
         //inner radius of rectangles
         rotationAngle = 10;
         for(int m = 0; m < 360; m += 30) {
-            RotatedRectangle rotatedRectangle = new RotatedRectangle(15, rotationAngle);
+            RotatedRectangle rotatedRectangle = new RotatedRectangle(15, rotationAngle, darkOliveGreen);
             double onThisRadius = radiusArray[0];
             double radians = m*Math.PI/180 + 105;
             double xCoord = onThisRadius*Math.cos(radians);

@@ -8,7 +8,7 @@ import java.awt.*;
  */
 public class CircleOnRadial extends GCompound {
 
-    public CircleOnRadial(double radius) {
+    public CircleOnRadial(double radius, Color color) {
         GOval blackCircle = new GOval(0,0, radius, radius);
         blackCircle.setFilled(true);
         blackCircle.setColor(Color.BLACK);
@@ -19,7 +19,7 @@ public class CircleOnRadial extends GCompound {
 
         GOval colorfulCircle = new GOval( (radius - (radius - 4))/2, (radius - (radius - 4))/2, radius - 4, radius - 4);
         colorfulCircle.setFilled(true);
-        colorfulCircle.setColor(Color.GREEN);
+        colorfulCircle.setColor(color);
 
         add(blackCircle);
         add(colorfulCircle);

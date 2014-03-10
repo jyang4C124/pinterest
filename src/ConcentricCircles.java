@@ -1,5 +1,6 @@
 import acm.graphics.GCompound;
 import acm.graphics.GOval;
+import acm.util.RandomGenerator;
 
 import java.awt.*;
 
@@ -31,8 +32,32 @@ public class ConcentricCircles extends GCompound {
         GOval circ2 = new GOval((frameSize - radius2)/2, (frameSize - radius2)/2, radius2, radius2);
         GOval circ1 = new GOval((frameSize - radius1)/2 ,(frameSize - radius1)/2, radius1, radius1);
 
+        RandomGenerator rgen = new RandomGenerator();
+
+        Color color = rgen.nextColor();
+        circ6.setColor(color);
+
+
+        color = rgen.nextColor();
+        circ5.setColor(color);
+
+        color = rgen.nextColor();
+        circ5.setColor(color);
+
+        //color = rgen.nextColor();
+        circ4.setColor(Color.black);
+
+        color = rgen.nextColor();
+        circ3.setColor(color);
+
+        //color = rgen.nextColor();
+        circ2.setColor(color.black);
+
+        color = rgen.nextColor();
+        circ1.setColor(color);
+
         add(circ6);
-        circ5.setColor(Color.blue); add(circ5);
+        add(circ5);
         add(circ4);
         add(circ3);
         add(circ2);

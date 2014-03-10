@@ -16,7 +16,7 @@ public class RotatedRectangle extends GCompound {
     private double length;
     private double width;
 
-    public RotatedRectangle(double width, double rotation) {
+    public RotatedRectangle(double width, double rotation, Color color) {
         this.length = width*Brick.GOLDEN_RATIO;
         this.width = width;
 
@@ -27,7 +27,7 @@ public class RotatedRectangle extends GCompound {
         blackRect.addEdge(length, 0);
 
         blackRect.setFilled(true);
-        blackRect.setColor(Color.BLACK);
+        blackRect.setColor(Color.black);
         blackRect.rotate(rotation);
         add(blackRect);
 
@@ -45,7 +45,7 @@ public class RotatedRectangle extends GCompound {
         colorfulRect.addEdge(colorfulLength, 0);
 
         colorfulRect.setFilled(true);
-        colorfulRect.setColor(Color.GREEN);
+        colorfulRect.setColor(color);
         colorfulRect.rotate(rotation);
         add(colorfulRect, colorfulRectXCoord, colorfulRectYCoord);
     }
