@@ -24,7 +24,7 @@ public class Brick extends GCompound {
         int r = rgen.nextInt(100,255); //look at RandomGenerator documentation so we can figure out how to get colors from a beige subset of colors
         int g = rgen.nextInt(100,255);
         int b = rgen.nextInt(0, 175);
-        Color color = new Color(r,g,b);
+        Color color = new Color(r,g,b,100);
         bricky.setColor(color);
         add(bricky);
     }

@@ -12,6 +12,16 @@ public class RunRadialMirror extends GraphicsProgram {
         int frameSize = 500;
         setSize(frameSize,frameSize*2);
 
+        ConcentricCircles concentricCircles = new ConcentricCircles(frameSize);
+        add(concentricCircles);
+        double[] radiusArray = concentricCircles.getRadiusArray();
+
+        //Weird thing I am doing
+        for (int n = 0; n < 100; n +=5) {
+            ConcentricCircles concentricCirclesWeird = new ConcentricCircles(frameSize - 75 + n);
+            add(concentricCirclesWeird);
+        }
+
         //Making the brick wall with a for loop
         double totLengthOfBricks = 0; //Length is horizontal of the brick, it is the longest
         double totWidthOfBricks = 0; //Width is the vertical of the brick, it is shorter
@@ -42,23 +52,15 @@ public class RunRadialMirror extends GraphicsProgram {
 //        RotatedRectangle rotatedRectangle = new RotatedRectangle(45,0);
 //        add(rotatedRectangle,45*Brick.GOLDEN_RATIO/2.0, 45);
 
-        ConcentricCircles concentricCircles = new ConcentricCircles(frameSize);
-        add(concentricCircles);
-        double[] radiusArray = concentricCircles.getRadiusArray();
 
-        //Weird thing I am doing
-        for (int n = 0; n < 100; n +=5) {
-            ConcentricCircles concentricCirclesWeird = new ConcentricCircles(frameSize - 75 + n);
-            add(concentricCirclesWeird);
-        }
 
 
 
         //Specifying colors for geometric objects
-        Color beige = new Color(250,235,215);
-        Color darkGreen = new Color(0,100,0);
-        Color lighterGreen = new Color(143,188,143);
-        Color darkOliveGreen = new Color(85,107,47);
+        Color beige = new Color(255,240,220,250);
+        Color darkGreen = new Color(0,100,0,150);
+        Color lighterGreen = new Color(143,188,143,150);
+        Color darkOliveGreen = new Color(85,107,47,150);
 
 
         //note there are 12 geometric shapes in each of the large concentric circles so k should be 360/12 = 30.
@@ -164,7 +166,7 @@ public class RunRadialMirror extends GraphicsProgram {
             GOval centerCircle = new GOval(mirrorRadius, mirrorRadius);
             centerCircle.setFilled(true);
             centerCircle.setColor(transparentWhite);
-            transparentWhite = new Color(255,255,255, (20+(4*m)/5)%255);
+            transparentWhite = new Color(255,255,255, (20+(4*m)/5)%255); //arbitrary alpha value calculation
             add(centerCircle, (frameSize - mirrorRadius)/2 , (frameSize - mirrorRadius)/2);
         }
 
