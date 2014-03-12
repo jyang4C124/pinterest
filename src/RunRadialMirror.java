@@ -14,14 +14,30 @@ public class RunRadialMirror extends GraphicsProgram {
         int frameSize = 500;
         setSize(frameSize,frameSize*2);
 
-        ConcentricCircles concentricCircles = new ConcentricCircles(frameSize);
+        ConcentricCircles concentricCircles = new ConcentricCircles(frameSize,frameSize);
         add(concentricCircles);
         double[] radiusArray = concentricCircles.getRadiusArray();
 
-        //Weird thing I am doing
+        //Makes cool gradients, not sure how this works entirely myself....
+//        for (int j = 0; j < 100; j += 5) {
+//            GradientSpiral gradientSpiral = new GradientSpiral(250, frameSize -50 + j);
+//            add(gradientSpiral, 275,430);
+//        }
+//
+//        for (int j = 0; j < 100; j += 5) {
+//            GradientSpiral gradientSpiral = new GradientSpiral(250, frameSize - 75 - j);
+//            add(gradientSpiral, 200,400);
+//        }
+//
+//        for (int j = 0; j < 100; j += 5) {
+//            GradientSpiral gradientSpiral = new GradientSpiral(250, frameSize - 75 - j);
+//            add(gradientSpiral, 200,400);
+//        }
+
+        //Making a lot of centered rings
         for (int n = 0; n < 100; n +=5) {
-            ConcentricCircles concentricCirclesWeird = new ConcentricCircles(frameSize - 75 + n);
-            add(concentricCirclesWeird);
+            ConcentricCircles concentricCirclesWeird = new ConcentricCircles(frameSize, frameSize - 75 + n);
+            add(concentricCirclesWeird); // concentricCircles should autocenter itself.
         }
 
         //Making the brick wall with a for loop
@@ -168,7 +184,7 @@ public class RunRadialMirror extends GraphicsProgram {
             GOval centerCircle = new GOval(mirrorRadius, mirrorRadius);
             centerCircle.setFilled(true);
             centerCircle.setColor(transparentWhite);
-            transparentWhite = new Color(255,255,255, (20+(4*m)/5)%255); //arbitrary alpha value calculation
+            transparentWhite = new Color(255,255,255, (20+(10*m)/5)%255); //arbitrary alpha value calculation
             add(centerCircle, (frameSize - mirrorRadius)/2, (frameSize - mirrorRadius)/2 );
         }
 

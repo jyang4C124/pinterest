@@ -16,15 +16,16 @@ public class ConcentricCircles extends GCompound {
     private double radius2;
     private double radius1;
 
-    public ConcentricCircles(double frameSize) {
+    public ConcentricCircles(double frameSize, double setSize) {
 
-        radius6 = frameSize*.85;
-        radius5 = frameSize*(.85 - .15);
-        radius4 = frameSize*(.85 - .25);
-        radius3 = frameSize*(.85 - .35);
-        radius2 = frameSize*(.85 - .45);
-        radius1 = frameSize*(.85 - .55);
+        radius6 = setSize*.85;
+        radius5 = setSize*(.85 - .15);
+        radius4 = setSize*(.85 - .25);
+        radius3 = setSize*(.85 - .35);
+        radius2 = setSize*(.85 - .45);
+        radius1 = setSize*(.85 - .55);
 
+        //should auto center the circles based on the frameSize
         GOval circ6 = new GOval((frameSize - radius6)/2, (frameSize- radius6)/2, radius6, radius6);
         GOval circ5 = new GOval((frameSize - radius5)/2 ,(frameSize - radius5)/2, radius5, radius5);
         GOval circ4 = new GOval((frameSize - radius4)/2, (frameSize - radius4)/2, radius4, radius4);
@@ -70,3 +71,13 @@ public class ConcentricCircles extends GCompound {
     }
 
 }
+
+/*      GOval circ6 = new GOval((frameSize - radius6)/2 - radius6/2.0, (frameSize- radius6)/2 - radius6/2.0, radius6, radius6);
+        GOval circ5 = new GOval((frameSize - radius5)/2 -radius5/2.0,(frameSize - radius5)/2 -radius5/2.0, radius5, radius5);
+        GOval circ4 = new GOval((frameSize - radius4)/2 - radius4/2.0, (frameSize - radius4)/2 - radius4/2.0, radius4, radius4);
+        GOval circ3 = new GOval((frameSize - radius3)/2 - radius3/2.0,(frameSize - radius3)/2- radius3/2.0, radius3, radius3);
+        GOval circ2 = new GOval((frameSize - radius2)/2- radius2/2.0, (frameSize - radius2)/2 - radius2/2.0, radius2, radius2);
+        GOval circ1 = new GOval((frameSize - radius1)/2 - radius1/2.0,(frameSize - radius1)/2- radius1/2.0, radius1, radius1);
+
+        This is for super cool rainbow gradient effects
+*/
