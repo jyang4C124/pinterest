@@ -1,7 +1,9 @@
+import acm.graphics.GObject;
 import acm.graphics.GOval;
 import acm.program.GraphicsProgram;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by jyang4 on 3/7/14.
@@ -161,16 +163,25 @@ public class RunRadialMirror extends GraphicsProgram {
         //add center mirror
         int m = 0;
         Color transparentWhite = new Color(255,255,255,200);
-        for (m = 0; m < 360*100; m+= 5) {
+        for (m = 0; m < 50; m+= 5) {
             double mirrorRadius = radiusArray[0] - 15 - 2*m;
             GOval centerCircle = new GOval(mirrorRadius, mirrorRadius);
             centerCircle.setFilled(true);
             centerCircle.setColor(transparentWhite);
             transparentWhite = new Color(255,255,255, (20+(4*m)/5)%255); //arbitrary alpha value calculation
-            add(centerCircle, (frameSize - mirrorRadius)/2 , (frameSize - mirrorRadius)/2);
+            add(centerCircle, (frameSize - mirrorRadius)/2, (frameSize - mirrorRadius)/2 );
         }
 
-
-
+        addMouseListeners();
+    }
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        GObject target = getElementAt(e.getX(), e.getY());
+        if (target != null) {
+            println("point is " + e.getX() + ", " + e.getY());
+            println("screen point is " + e.getXOnScreen() + ", " + e.getYOnScreen());
+            println("target is " + target);
+            remove(target);
+        }
     }
 }
