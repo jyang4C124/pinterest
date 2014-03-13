@@ -9,6 +9,12 @@ import java.awt.event.MouseEvent;
  * Created by jyang4 on 3/7/14.
  */
 public class RunRadialMirror extends GraphicsProgram {
+
+    private GObject target;
+    private double lastX;
+    private double lastY;
+    private GObject [] bigCircles = new GObject[12]; //12 for the number of geometrical objects in a ring
+
     @Override
     public void run() {
         int frameSize = 500;
@@ -156,6 +162,7 @@ public class RunRadialMirror extends GraphicsProgram {
             } else {
                 circleOnRadial = new CircleOnRadial(31,lighterGreen);
             }
+            bigCircles[m/30] = circleOnRadial; //adding to bigCirclesArray
             double onThisRadius = radiusArray[1];
             double radians = m*Math.PI/180 + 75;
             double xCoord = onThisRadius*Math.cos(radians);
@@ -189,15 +196,50 @@ public class RunRadialMirror extends GraphicsProgram {
         }
 
         addMouseListeners();
+
+        while(true) {
+            pause(100);
+            if (target != null) {
+                target.move(20,20);
+            }
+            i = 0;
+            for (i = 0; i < 12; i++) {
+                pause(100);
+                double onThisRadius = radiusArray[2]; //we are moving the circles on radius2
+                double radians = 20; //move 30 degree rotation each time
+
+                //! THE RADIANS NEED TO CHANGE EACH TIME?!
+                //dude just use stack overflow
+
+                double dx = Math.cos(radians); //the distance to move the x coordinate
+                double dy = Math.sin(radians); //the distance to move the y coordinate
+
+                double circlePositionX = bigCircles[i].getX();
+                double circlePositionY = bigCircles[i].getY();
+                //add(circleOnRadial, (frameSize - xCoord)/2 - 31/2.0, (frameSize - yCoord)/2 - 31/2.0);
+
+                bigCircles[i].move(- dx, -dy);
+            }
+
+
+
+
+        }
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        GObject target = getElementAt(e.getX(), e.getY());
+        target = getElementAt(e.getX(), e.getY());
         if (target != null) {
+            lastX = e.getX();
+            lastY = e.getY();
             println("point is " + e.getX() + ", " + e.getY());
-            println("screen point is " + e.getXOnScreen() + ", " + e.getYOnScreen());
             println("target is " + target);
-            remove(target);
+            //remove(target);
+        } else {
+            println("target is null");
         }
     }
+
+
+
 }
